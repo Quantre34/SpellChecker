@@ -6,3 +6,4 @@
 * if word is corect. it returns true;
 * if word didnt match w any, it  returns the similar words from the list AS ARRAY
 * MUST alter the arr
+* works with 75870 words wo a glicth
