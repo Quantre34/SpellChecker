@@ -61,7 +61,7 @@ if (result.includes(true)){
             let x = row.split("");
             let swing = text.trim();
             let y = swing.split("");
-            let percentage = row.length;/// this means whole
+            let per = row.length;/// this means whole
             let range = 0; /// this is going to show how much letters gonna match
             x.forEach(function(b, index){
                  if(b == y[index]){
@@ -69,7 +69,7 @@ if (result.includes(true)){
                  }
             });
             let data = [
-                (percentage / range), 
+                (per / range), 
                 row
             ];
             apr.push(data); 
