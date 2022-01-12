@@ -80,7 +80,7 @@ if (result.includes(true)){
         let similars = [];
         list.forEach(function(row, index){
         if(row[0] <= 1.3){
-            similars.push(row);
+            similars.push(row[1]);
         }
         });
         return similars;
