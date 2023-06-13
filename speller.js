@@ -1,6 +1,5 @@
-
-function spellcheck(text){
-    const arr = [
+function SpellChecker(partialInput) {
+  const Dictionary = [
         "a",
         "a / e",
         "ab",
@@ -42,46 +41,34 @@ function spellcheck(text){
         "abanozlastirabilmek"
 ];
 
-///let  text = "yonetsea";
-let result = arr.map(function(row, index){
-    var res;
-    if(row.trim() == text.trim()){
-        return true;
-    }else {
-        return false;      
+  const matchingWords = Dictionary.filter((word) => {
+    const partialLength = partialInput.length;
+    const wordLength = word.length;
+
+    if (word.startsWith(partialInput)) {
+      return true;
     }
-});
-if (result.includes(true)){
-    return true;
-}else {
-        const apr = [];
-        let suggestions = [];
-        arr.forEach(function(row, index){
-            let x = row.split("");
-            let swing = text.trim();
-            let y = swing.split("");
-            let per = row.length;/// this means whole
-            let range = 0; /// this is going to show how much letters gonna match
-            x.forEach(function(b, index){
-                 if(b == y[index]){
-                     range += 1;
-                 }
-            });
-            let data = [
-                (per / range), 
-                row
-            ];
-            apr.push(data); 
-        });
-        let list = apr.sort(function(a,b){
-            return a-b;
-        });
-        let similars = [];
-        list.forEach(function(row, index){
-        if(row[0] <= 1.4){/// 1.3 recommended
-            similars.push(row[1]);
+
+    if (partialLength > 1 && wordLength > 1 && word.includes(partialInput)) {
+      const partialChars = partialInput.split("");
+      const wordChars = word.split("");
+
+      let matchCount = 0;
+      for (let i = 0; i < partialLength; i++) {
+        if (wordChars.includes(partialChars[i])) {
+          matchCount++;
         }
-        });
-        return similars;
+      }
+
+      if (matchCount >= partialLength - 1) {
+        return true;
+      }
+    }
+
+    return false;
+  });
+
+  return matchingWords;
 }
-}
+
+
